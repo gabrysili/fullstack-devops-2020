@@ -10,6 +10,46 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+    HEX-RGB:
+      build: hex-rgb
+      restart: "no"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.HEX-RGB.rule=PathPrefix(`/HEX-RGB`)"
+        - "traefik.http.routers.HEX-RGB.middlewares=HEX-RGB-stripprefix"
+        - "traefik.http.middlewares.HEX-RGB-stripprefix.stripprefix.prefixes=/HEX-RGB"
+        - "traefik.http.services.HEX-RGB.loadbalancer.server.port=3000"
+
+    # HSL-HEX:
+    #   build: hsl-hex
+    #   restart: "no"
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.HSL-HEX.rule=PathPrefix(`/HSL-HEX`)"
+    #     - "traefik.http.routers.HSL-HEX.middlewares=HSL-HEX-stripprefix"
+    #     - "traefik.http.middlewares.HSL-HEX-stripprefix.stripprefix.prefixes=/HSL-HEX"
+    #     - "traefik.http.services.HSL-HEX.loadbalancer.server.port=3000"
+
+    # RGB-CMYK:
+    #   build: rgb-cmyk
+    #   restart: "no"
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.RGB-CMYK.rule=PathPrefix(`/RGB-CMYK`)"
+    #     - "traefik.http.routers.RGB-CMYK.middlewares=RGB-CMYK-stripprefix"
+    #     - "traefik.http.middlewares.RGB-CMYK-stripprefix.stripprefix.prefixes=/RGB-CMYK"
+    #     - "traefik.http.services.RGB-CMYK.loadbalancer.server.port=3000"
+
+    # CMYK-HSL:
+    #   build: cmyk-hsl
+    #   restart: "no"
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.CMYK-HSL.rule=PathPrefix(`/CMYK-HSL`)"
+    #     - "traefik.http.routers.CMYK-HSL.middlewares=CMYK-HSL-stripprefix"
+    #     - "traefik.http.middlewares.CMYK-HSL-stripprefix.stripprefix.prefixes=/CMYK-HSL"
+    #     - "traefik.http.services.CMYK-HSL.loadbalancer.server.port=3000"
+
 #  <microservice-example-name>:
 #    build: <microservice-example-name>
 #    restart: "no"
