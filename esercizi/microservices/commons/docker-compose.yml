@@ -10,15 +10,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-    HEX-RGB:
-      build: hex-rgb
+    hex-rgb:
+      build: HEX-RGB
       restart: "no"
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.HEX-RGB.rule=PathPrefix(`/HEX-RGB`)"
-        - "traefik.http.routers.HEX-RGB.middlewares=HEX-RGB-stripprefix"
-        - "traefik.http.middlewares.HEX-RGB-stripprefix.stripprefix.prefixes=/HEX-RGB"
-        - "traefik.http.services.HEX-RGB.loadbalancer.server.port=3000"
+        - "traefik.http.routers.hex-rgb.rule=PathPrefix(`/hex-rgb`)"
+        - "traefik.http.routers.hex-rgb.middlewares=hex-rgb-stripprefix"
+        - "traefik.http.middlewares.hex-rgb-stripprefix.stripprefix.prefixes=/hex-rgb"
+        - "traefik.http.services.hex-rgb.loadbalancer.server.port=3000"
 
     # HSL-HEX:
     #   build: hsl-hex

@@ -1,8 +1,9 @@
 FROM node:alpine
-COPY /dist /API/dist
-COPY package.json /API
-WORKDIR /API
-RUN npm install
-WORKDIR /API/dist/HEX-RGB/src/
+# COPY /dist /API/dist
+# COPY package.json /API
+# WORKDIR /API
+# RUN npm install
+# WORKDIR /API/dist/HEX-RGB/src/
 EXPOSE 3000
-CMD ["node","HttpServer.js"]
+# CMD ["node","HttpServer.js"]
+CMD ["node","HttpServer.ts"]
